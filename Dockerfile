@@ -7,7 +7,6 @@ RUN npm install
 FROM node:lts as builder
 WORKDIR /my-project
 COPY ./ .
-COPY ./.env .
 COPY --from=dependencies /my-project/node_modules ./node_modules
 RUN yarn run build
 FROM node:lts as runner
