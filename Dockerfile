@@ -3,6 +3,7 @@ WORKDIR /my-project
 COPY package.json package-lock.json ./
 RUN npm install
 
+RUN chown -R 1004330000:0 "/.npm"
 
 FROM node:lts as builder
 WORKDIR /my-project
@@ -16,7 +17,6 @@ COPY --from=builder /my-project/next.config.js ./
 COPY --from=builder /my-project/node_modules ./node_modules
 COPY --from=builder /my-project/package.json ./package.json
 
-RUN chown -R 1004330000:0 "/.npm"
 USER 1001
 ENV HOSTNAME="0.0.0.0"
 EXPOSE 3000
