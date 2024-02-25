@@ -2,6 +2,7 @@ FROM node:lts as dependencies
 WORKDIR /my-project
 COPY package.json package-lock.json ./
 RUN npm update
+RUN npm install npm@latest -g
 RUN npm install
 
 FROM node:lts as builder
