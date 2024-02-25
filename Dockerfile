@@ -3,8 +3,6 @@ WORKDIR /my-project
 COPY package.json package-lock.json ./
 RUN npm install
 
-RUN chown -R 1004330000:0 "/.npm"
-
 FROM node:lts as builder
 WORKDIR /my-project
 COPY ./ .
