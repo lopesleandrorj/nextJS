@@ -15,6 +15,9 @@ ENV NODE_ENV production
 COPY --from=builder /my-project/next.config.js ./
 COPY --from=builder /my-project/node_modules ./node_modules
 COPY --from=builder /my-project/package.json ./package.json
+
+RUN sudo chown -R 1004330000:0 "/.npm"
+USER 1001
 ENV HOSTNAME="0.0.0.0"
 EXPOSE 3000
 
